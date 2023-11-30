@@ -1,3 +1,6 @@
+using Domain.Extension;
+using Infrastructure.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,4 +25,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+UpdateDb();
+
 app.Run();
+
+
+void UpdateDb()
+{
+    var connection = builder.Configuration.GetConnection();
+    var db = builder.Configuration.GetDb();
+    Database.CreateDb(connection, db);
+}
