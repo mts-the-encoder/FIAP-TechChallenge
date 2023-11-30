@@ -1,4 +1,5 @@
 using Domain.Extension;
+using Infrastructure;
 using Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddRepository(builder.Configuration);
 
 var app = builder.Build();
 
@@ -29,10 +32,11 @@ UpdateDb();
 
 app.Run();
 
-
 void UpdateDb()
 {
     var connection = builder.Configuration.GetConnection();
     var db = builder.Configuration.GetDb();
     Database.CreateDb(connection, db);
+
+    app.MigrateDb();
 }

@@ -17,4 +17,12 @@ public static class RepositoryExtension
 
         return db;
     }
+
+    public static string GetFullConnection(this IConfiguration configuration)
+    {
+        var db = configuration.GetDb();
+        var connection = configuration.GetConnection();
+
+        return $"{connection}Database={db}";
+    }
 }

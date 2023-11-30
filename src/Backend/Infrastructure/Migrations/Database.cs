@@ -13,7 +13,7 @@ public static class Database
         param.Add("name",dbName);
 
         var registers = myConnection
-            .Query("SELECT * FROM sys.schemas WHERE name = @name", param);
+            .Query("SELECT * FROM sys.databases WHERE name = @name", param);
 
         if (!registers.Any())
             myConnection.Execute($"CREATE DATABASE {dbName}");
