@@ -97,6 +97,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erro desconhecido..
+        /// </summary>
+        public static string ERRO_DESCONHECIDO {
+            get {
+                return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome deve ser preenchido..
         /// </summary>
         public static string NOME_EM_BRANCO {

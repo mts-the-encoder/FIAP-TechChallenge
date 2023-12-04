@@ -1,9 +1,8 @@
+using Api.Filters;
 using Domain.Extension;
 using Infrastructure;
 using Infrastructure.Migrations;
 using Serilog;
-using Serilog.Sinks.MSSqlServer;
-using System.Diagnostics;
 using static Serilog.Log;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,11 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-
 builder.Host.UseSerilog();
 
 builder.Services.AddRepository(builder.Configuration);
+
+builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionsFilter)));
 
 var app = builder.Build();
 
