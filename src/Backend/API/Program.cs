@@ -15,12 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var config = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.Development.json").Build();
 
-Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(config)
-    .CreateLogger();
 
 builder.Host.UseSerilog();
 
@@ -43,6 +38,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+AddSerilog();
 UpdateDb();
 
 app.Run();
@@ -54,4 +50,14 @@ void UpdateDb()
     Database.CreateDb(connection, db);
 
     app.MigrateDb();
+}
+
+void AddSerilog()
+{
+    var config = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.Development.json").Build();
+
+    Logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(config)
+        .CreateLogger();
 }

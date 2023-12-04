@@ -61,6 +61,24 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O cnpj deve ser informado..
+        /// </summary>
+        public static string CNPJ_EM_BRANCO {
+            get {
+                return ResourceManager.GetString("CNPJ_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O cnpj não está no formato correto: XX.XXX.XXX/YYYY-ZZ.
+        /// </summary>
+        public static string CNPJ_INVALIDO {
+            get {
+                return ResourceManager.GetString("CNPJ_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O e-mail deve ser preenchido..
         /// </summary>
         public static string EMAIL_EM_BRANCO {

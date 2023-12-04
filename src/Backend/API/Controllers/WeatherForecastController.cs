@@ -15,10 +15,9 @@ public class WeatherForecastController : ControllerBase
     public IActionResult Get()
     {
         var message = ErrorMessages.EMAIL_EM_BRANCO;
-
-        Log.ForContext("UserName", "mts")
-            .ForContext("UserId", 1)
-            .Write(LogEventLevel.Error,message);
+        Log.ForContext("UserName","mts")
+            .ForContext("UserId",1)
+            .Error($"{message}");
 
         return Ok();
     }
