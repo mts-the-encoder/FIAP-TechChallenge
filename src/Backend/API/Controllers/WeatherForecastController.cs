@@ -23,7 +23,7 @@ public class WeatherForecastController : ControllerBase
         {
             Email = "mts@email.com",
             Name = "mts",
-            Phone = "11 9 1234-5678",
+            Phone = "1 9 1234-5678",
             CNPJ = "77.999.548/0001-11",
             Password = "1234567",
         });

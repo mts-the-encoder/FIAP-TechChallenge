@@ -41,9 +41,8 @@ public class CreateUseCase : ICreateUseCase
             var errorMessages = result.Errors
                 .Select(error => error.ErrorMessage).ToList();
             
-            Log.ForContext("UserName","mts")
-                .ForContext("UserId",1)
-                .Error($"{errorMessages}");
+            Log.ForContext("UserName", request.Name)
+                .Error($"{errorMessages.FirstOrDefault()}");
 
             throw new ValidationErrorsException(errorMessages);
         }
