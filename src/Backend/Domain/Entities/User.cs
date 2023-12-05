@@ -1,5 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace Domain.Entities;
+
+[Table("Users")]
 public class User : EntityBase
 {
     public string Name { get; set; }

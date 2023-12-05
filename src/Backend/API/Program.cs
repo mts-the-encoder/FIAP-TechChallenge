@@ -1,4 +1,6 @@
 using Api.Filters;
+using Application;
+using Application.Services.Mapper;
 using Domain.Extension;
 using Infrastructure;
 using Infrastructure.Migrations;
@@ -17,8 +19,14 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseSerilog();
 
 builder.Services.AddRepository(builder.Configuration);
+builder.Services.AddApplication();
 
 builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionsFilter)));
+
+builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new MapperConfiguration());
+}).CreateMapper());
 
 var app = builder.Build();
 
@@ -37,8 +45,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-AddSerilog();
 UpdateDb();
+AddSerilog();
 
 app.Run();
 

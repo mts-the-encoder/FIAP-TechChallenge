@@ -7,7 +7,7 @@ public class Version0000001 : Migration
 {
     public override void Up()
     {
-        var table = Create.Table("User");
+        var table = Create.Table("Users");
         VersionBase.CreateTableWithDefaultColumns(table);
 
         table

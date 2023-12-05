@@ -20,14 +20,16 @@ public static class DependencyInjection
 
         AddRepositories(services);
         AddUnitOfWork(services);
-        AddContext(services);
+        AddContext(services, configuration);
     }
 
-    private static void AddContext(IServiceCollection services)
+    private static void AddContext(IServiceCollection services, IConfiguration configuration)
     {
+        var connection = configuration.GetConnection();
+
         services.AddDbContext<AppDbContext>(dbOpt =>
         {
-            dbOpt.UseSqlServer();
+            dbOpt.UseSqlServer(connection);
         });
     }
 

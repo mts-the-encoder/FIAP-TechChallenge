@@ -1,9 +1,8 @@
+using Application.UseCases.User.Create;
+using Communication.Requests;
 using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using Serilog.Context;
-using Serilog.Events;
-using System;
 
 namespace API.Controllers;
 
@@ -11,13 +10,23 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    private readonly ICreateUseCase _useCase;
+    public WeatherForecastController(ICreateUseCase useCase)
     {
-        var message = ErrorMessages.EMAIL_EM_BRANCO;
-        Log.ForContext("UserName","mts")
-            .ForContext("UserId",1)
-            .Error($"{message}");
+        _useCase = useCase;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get([FromServices] ICreateUseCase useCase)
+    {
+        await useCase.Execute(new UserRequest()
+        {
+            Email = "mts@email.com",
+            Name = "mts",
+            Phone = "11 9 1234-5678",
+            CNPJ = "77.999.548/0001-11",
+            Password = "1234567",
+        });
 
         return Ok();
     }
