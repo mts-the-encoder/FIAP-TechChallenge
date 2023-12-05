@@ -1,8 +1,9 @@
 ﻿using Communication.Requests;
+using Communication.Responses;
 
 namespace Application.UseCases.User.Create;
 
 public interface ICreateUseCase
 {
-    Task Execute(UserRequest request);
+    Task<UserResponse> Execute(UserRequest request);
 }

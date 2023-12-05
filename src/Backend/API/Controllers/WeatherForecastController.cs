@@ -19,16 +19,16 @@ public class WeatherForecastController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromServices] ICreateUseCase useCase)
     {
-        await useCase.Execute(new UserRequest()
+        var response = await useCase.Execute(new UserRequest()
         {
             Email = "mts@email.com",
             Name = "mts",
-            Phone = "1 9 1234-5678",
+            Phone = "11 9 1234-5678",
             CNPJ = "77.999.548/0001-11",
             Password = "1234567",
         });
 
-        return Ok();
+        return Ok(response);
     }
 }
 
