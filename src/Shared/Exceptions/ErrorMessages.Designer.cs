@@ -149,5 +149,14 @@ namespace Exceptions {
                 return ResourceManager.GetString("TELEFONE_INVALIDO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esse email já está cadastrado..
+        /// </summary>
+        public static string USUARIO_EXISTENTE {
+            get {
+                return ResourceManager.GetString("USUARIO_EXISTENTE", resourceCulture);
+            }
+        }
     }
 }

@@ -1,8 +1,6 @@
 using Application.UseCases.User.Create;
 using Communication.Requests;
-using Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace API.Controllers;
 
@@ -10,18 +8,12 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private readonly ICreateUseCase _useCase;
-    public WeatherForecastController(ICreateUseCase useCase)
-    {
-        _useCase = useCase;
-    }
-
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> Get([FromServices] ICreateUseCase useCase)
     {
         var response = await useCase.Execute(new UserRequest()
         {
-            Email = "mts@email.com",
+            Email = "mtsss@email.com",
             Name = "mts",
             Phone = "11 9 1234-5678",
             CNPJ = "77.999.548/0001-11",
@@ -31,5 +23,3 @@ public class WeatherForecastController : ControllerBase
         return Ok(response);
     }
 }
-
-

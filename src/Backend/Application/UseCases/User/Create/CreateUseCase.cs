@@ -4,37 +4,43 @@ using AutoMapper;
 using Communication.Requests;
 using Communication.Responses;
 using Domain.Repositories;
+using Exceptions;
 using Exceptions.ExceptionBase;
+using FluentMigrator.Infrastructure;
+using FluentValidation.Results;
 using Infrastructure.RepositoryAccess.UnitOfWork;
 using Serilog;
+using ErrorMessages = Exceptions.ErrorMessages;
 
 namespace Application.UseCases.User.Create;
 
 public class CreateUseCase : ICreateUseCase
 {
-    private readonly IUserWriteOnlyRepository _repository;
+    private readonly IUserReadOnlyRepository _readRepository;
+    private readonly IUserWriteOnlyRepository _writeRepository;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly Encryptor _encryptor;
     private readonly TokenService _tokenService;
 
-    public CreateUseCase(IUserWriteOnlyRepository repository, IMapper mapper, IUnitOfWork unitOfWork, Encryptor encryptor, TokenService tokenService)
+    public CreateUseCase(IUserWriteOnlyRepository writeRepository, IMapper mapper, IUnitOfWork unitOfWork, Encryptor encryptor, TokenService tokenService, IUserReadOnlyRepository readRepository)
     {
-        _repository = repository;
+        _writeRepository = writeRepository;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
         _encryptor = encryptor;
         _tokenService = tokenService;
+        _readRepository = readRepository;
     }
 
     public async Task<UserResponse> Execute(UserRequest request)
     {
-        Validate(request);
+        await Validate(request);
 
         var entity = _mapper.Map<Domain.Entities.User>(request);
         entity.Password = _encryptor.Encrypt(request.Password);
 
-        await _repository.Add(entity);
+        await _writeRepository.Add(entity);
 
         await _unitOfWork.Commit();
 
@@ -46,11 +52,16 @@ public class CreateUseCase : ICreateUseCase
         };
     }
 
-    private static void Validate(UserRequest request)
+    private async Task Validate(UserRequest request)
     {
         var validator = new CreateValidator();
-        var result = validator.Validate(request);
-        
+        var result = await validator.ValidateAsync(request);
+
+        var existsUser = await _readRepository.ExistsByEmail(request.Email);
+
+        if (existsUser)
+            result.Errors.Add(new ValidationFailure("email", ErrorMessages.USUARIO_EXISTENTE));
+
         if (!result.IsValid)
         {
             var errorMessages = result.Errors

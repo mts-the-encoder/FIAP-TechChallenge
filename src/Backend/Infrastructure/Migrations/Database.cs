@@ -10,7 +10,7 @@ public static class Database
         using var myConnection = new SqlConnection(dbConnection);
 
         var param = new DynamicParameters();
-        param.Add("name",dbName);
+        param.Add("name", dbName);
 
         var registers = myConnection
             .Query("SELECT * FROM sys.databases WHERE name = @name", param);
