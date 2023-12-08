@@ -39,11 +39,11 @@ name: SonarCloud
                   dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
               - name: Build and analyze
                 env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                 shell: powershell
                 run: |
-                  .\.sonar\scanner\dotnet-sonarscanner begin /k:"mts-the-encoder_FIAP-TechChallenge" /o:"mts-the-encoder" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.verbose=true
+                  .\.sonar\scanner\dotnet-sonarscanner begin /k:"mts-the-encoder_FIAP-TechChallenge" /o:"mts-the-encoder" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
                   dotnet build --no-incremental
                   dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover -l trx
-                  .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.verbose=true
+                  .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
