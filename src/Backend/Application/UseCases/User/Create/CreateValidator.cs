@@ -15,7 +15,6 @@ public class CreateValidator : AbstractValidator<UserRequest>
         RuleFor(x => x.Phone).NotEmpty().WithMessage(ErrorMessages.TELEFONE_EM_BRANCO);
         RuleFor(x => x.CNPJ).NotEmpty().WithMessage(ErrorMessages.CNPJ_EM_BRANCO);
         RuleFor(x => x.Password).NotEmpty().WithMessage(ErrorMessages.SENHA_EM_BRANCO);
-        RuleFor(x => x.Password).MinimumLength(6).WithMessage(ErrorMessages.SENHA_CURTA);
 
         When(x => !string.IsNullOrWhiteSpace(x.Email), () =>
         {
@@ -31,7 +30,7 @@ public class CreateValidator : AbstractValidator<UserRequest>
         {
              RuleFor(x => x.Phone).Custom((phone, context) =>
              {
-                 const string pattern = "[0-9]{2} [9]{1} [0-9]{4}-[0-9]{4}";
+                 const string pattern = "[0-9]{2} [1-9]{1} [0-9]{4}-[0-9]{4}";
                  var isMatch = IsMatch(phone, pattern);
 
                  if (!isMatch) context.AddFailure(new ValidationFailure(nameof(phone), ErrorMessages.TELEFONE_INVALIDO));
