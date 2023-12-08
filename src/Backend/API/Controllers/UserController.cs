@@ -6,7 +6,7 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserControllerController : ControllerBase
+public class UserController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromServices] ICreateUseCase useCase, [FromBody] UserRequest request)

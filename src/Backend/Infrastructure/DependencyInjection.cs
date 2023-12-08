@@ -1,5 +1,4 @@
 ﻿using Domain.Extension;
-using Domain.Repositories;
 using FluentMigrator.Runner;
 using Infrastructure.RepositoryAccess;
 using Infrastructure.RepositoryAccess.Repository;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SqlServer.Management.Smo;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Domain.Repositories.User;
 
 namespace Infrastructure;
 
