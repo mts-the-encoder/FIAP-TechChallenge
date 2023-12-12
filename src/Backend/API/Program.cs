@@ -26,7 +26,7 @@ builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionsFilter)));
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
 {
-    cfg.AddProfile(new MapperConfiguration());
+    cfg.AddProfile(new AutoMapperConfiguration());
 }).CreateMapper());
 
 var app = builder.Build();

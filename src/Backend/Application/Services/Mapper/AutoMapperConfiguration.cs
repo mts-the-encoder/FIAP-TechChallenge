@@ -5,9 +5,9 @@ using Domain.Entities;
 
 namespace Application.Services.Mapper;
 
-public class MapperConfiguration : Profile
+public class AutoMapperConfiguration : Profile
 {
-    public MapperConfiguration()
+    public AutoMapperConfiguration()
     {
         CreateMap<User, UserRequest>().ReverseMap();
         CreateMap<User, UserResponse>().ReverseMap();

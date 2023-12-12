@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Validators.Tests.Users.Create;
 
-public class ValidatorTest
+public class CreateUserValidatorTest
 {
     [Fact]
     public void Validate_Success()

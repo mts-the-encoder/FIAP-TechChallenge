@@ -129,6 +129,9 @@
   <data name="EMAIL_INVALIDO" xml:space="preserve">
     <value>Este não é um e-mail válido.</value>
   </data>
+  <data name="EMAIL_REGISTRADO" xml:space="preserve">
+    <value>Esse email já está cadastrado.</value>
+  </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Erro desconhecido.</value>
   </data>
@@ -146,8 +149,5 @@
   </data>
   <data name="TELEFONE_INVALIDO" xml:space="preserve">
     <value>O telefone não está no formato correto: XX X XXXX-XXXX</value>
-  </data>
-  <data name="USUARIO_EXISTENTE" xml:space="preserve">
-    <value>Esse email já está cadastrado.</value>
   </data>
 </root>

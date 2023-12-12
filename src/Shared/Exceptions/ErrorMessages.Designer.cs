@@ -97,6 +97,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse email já está cadastrado..
+        /// </summary>
+        public static string EMAIL_REGISTRADO {
+            get {
+                return ResourceManager.GetString("EMAIL_REGISTRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro desconhecido..
         /// </summary>
         public static string ERRO_DESCONHECIDO {
@@ -147,15 +156,6 @@ namespace Exceptions {
         public static string TELEFONE_INVALIDO {
             get {
                 return ResourceManager.GetString("TELEFONE_INVALIDO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Esse email já está cadastrado..
-        /// </summary>
-        public static string USUARIO_EXISTENTE {
-            get {
-                return ResourceManager.GetString("USUARIO_EXISTENTE", resourceCulture);
             }
         }
     }

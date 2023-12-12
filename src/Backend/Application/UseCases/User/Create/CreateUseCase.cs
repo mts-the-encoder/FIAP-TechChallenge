@@ -58,7 +58,7 @@ public class CreateUseCase : ICreateUseCase
         var existsUser = await _readRepository.ExistsByEmail(request.Email);
 
         if (existsUser)
-            result.Errors.Add(new ValidationFailure("email", ErrorMessages.USUARIO_EXISTENTE));
+            result.Errors.Add(new ValidationFailure("email", ErrorMessages.EMAIL_REGISTRADO));
 
         if (!result.IsValid)
         {
