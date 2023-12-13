@@ -36,7 +36,14 @@
 							"var cnpj = `${firstBlock}.${secondBlock}.${thirdBlock}/${fourthBlock}-${fifthBlock}`;\r",
 							"\r",
 							"pm.environment.set('cnpj', cnpj);\r",
-							""
+							"\r",
+							"// Password\r",
+							"\r",
+							"let email = pm.variables.replaceIn('{{$randomEmail}}');\r",
+							"let password = pm.variables.replaceIn('{{$randomPassword}}');\r",
+							"\r",
+							"postman.setGlobalVariable(\"EMAIL\", email);\r",
+							"postman.setGlobalVariable(\"PASSWORD\", password);"
 						],
 						"type": "text/javascript"
 					}
@@ -60,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"{{$randomFullName}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"phone\": \"{{telephone}}\",\r\n  \"cnpj\": \"{{cnpj}}\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+					"raw": "{\r\n  \"name\": \"{{$randomFullName}}\",\r\n  \"email\": \"{{EMAIL}}\",\r\n  \"phone\": \"{{telephone}}\",\r\n  \"cnpj\": \"{{cnpj}}\",\r\n  \"password\": \"{{PASSWORD}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -74,6 +81,89 @@
 					],
 					"path": [
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.have.jsonBody(\"token\");\r",
+							"    pm.response.to.have.jsonBody(\"name\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{EMAIL}}\",\r\n  \"password\": \"{{PASSWORD}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/login",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginWithError",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login\", function() {\r",
+							"    pm.response.to.have.status(401);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.have.jsonBody(\"messages\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/login",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"login"
 					]
 				}
 			},
