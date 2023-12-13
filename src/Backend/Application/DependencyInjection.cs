@@ -1,5 +1,6 @@
 ﻿using Application.Services.Cryptography;
 using Application.Services.Token;
+using Application.UseCases.Login.DoLogin;
 using Application.UseCases.User.Create;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ public static class DependencyInjection
         AddAdditionalKeyPassword(services, configuration);
         AddTokenJWT(services, configuration);
 
-        services.AddScoped<ICreateUseCase, CreateUseCase>();
+        AddUseCase(services);
     }
 
     private static void AddAdditionalKeyPassword(IServiceCollection services, IConfiguration configuration)
@@ -29,5 +30,11 @@ public static class DependencyInjection
         var sectionToken = configuration.GetValue<string>("Configurations:TokenKey");
 
         services.AddScoped(opt => new TokenService(int.Parse(sectionLifeTime), sectionToken));
+    }
+
+    private static void AddUseCase(IServiceCollection services)
+    {
+        services.AddScoped<ICreateUseCase, CreateUseCase>()
+            .AddScoped<ILoginUseCase, LoginUseCase>();
     }
 }

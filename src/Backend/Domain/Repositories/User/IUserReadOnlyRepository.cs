@@ -2,4 +2,5 @@
 public interface IUserReadOnlyRepository
 {
     Task<bool> ExistsByEmail(string email);
+    Task<Entities.User> Login (string email, string password);
 }

@@ -1,12 +1,11 @@
+using Api.Controllers;
 using Application.UseCases.User.Create;
 using Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class UserController : ControllerBase
+public class UserController : TechChallengeController
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromServices] ICreateUseCase useCase, [FromBody] UserRequest request)

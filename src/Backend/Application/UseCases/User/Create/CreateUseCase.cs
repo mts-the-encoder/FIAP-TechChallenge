@@ -64,9 +64,11 @@ public class CreateUseCase : ICreateUseCase
         {
             var errorMessages = result.Errors
                 .Select(error => error.ErrorMessage).ToList();
-            
-            Log.ForContext("UserName", request.Name)
-                .Error($"{errorMessages.FirstOrDefault()}");
+
+            var concatenatedErrors = string.Join("\n", errorMessages);
+
+            Log.ForContext("UserName",request.Email)
+                .Error($"{concatenatedErrors}");
 
             throw new ValidationErrorsException(errorMessages);
         }

@@ -12,15 +12,17 @@ public class ExceptionsFilter : IExceptionFilter
     public void OnException(ExceptionContext context)
     {
         if (context.Exception is TechChallengeException)
-        {
             TreatException(context);
-        }
+        else
+            ThrowUnknownError(context);
     }
 
     private static void TreatException(ExceptionContext context)
     {
         if (context.Exception is ValidationErrorsException)
             TreatValidationsException(context);
+
+        else if (context.Exception is InvalidLoginException) TreatLoginException(context);
     }
 
     private static void TreatValidationsException(ExceptionContext context)
@@ -35,5 +37,13 @@ public class ExceptionsFilter : IExceptionFilter
     {
         context.HttpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
         context.Result = new ObjectResult(new ErrorResponse(ErrorMessages.ERRO_DESCONHECIDO));
+    }
+
+    private static void TreatLoginException(ExceptionContext context)
+    {
+        var error = context.Exception as InvalidLoginException;
+
+        context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+        context.Result = new ObjectResult(new ErrorResponse(error.Message));
     }
 }
