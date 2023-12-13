@@ -4,6 +4,7 @@ using Application.Services.Mapper;
 using Domain.Extension;
 using Infrastructure;
 using Infrastructure.Migrations;
+using Infrastructure.RepositoryAccess;
 using Serilog;
 using static Serilog.Log;
 
@@ -53,11 +54,19 @@ app.Run();
 
 void UpdateDb()
 {
-    var connection = builder.Configuration.GetConnection();
-    var db = builder.Configuration.GetDb();
-    Database.CreateDb(connection, db);
+    using var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    using var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-    app.MigrateDb();
+    bool? databaseInMemory = context?.Database.ProviderName?.Equals("Microsoft.EntityFrameworkCore.InMemory");
+
+    if (!databaseInMemory.HasValue || !databaseInMemory.Value)
+    {
+        var connection = builder.Configuration.GetConnection();
+        var db = builder.Configuration.GetDb();
+        Database.CreateDb(connection, db);
+        
+        app.MigrateDb();
+    }
 }
 
 void AddSerilog()
@@ -69,3 +78,5 @@ void AddSerilog()
         .ReadFrom.Configuration(config)
         .CreateLogger();
 }
+
+public partial class Program { }

@@ -25,12 +25,17 @@ public static class DependencyInjection
 
     private static void AddContext(IServiceCollection services, IConfiguration configuration)
     {
-        var connection = configuration.GetConnection();
+        bool.TryParse(configuration.GetSection("Configurations:DatabaseInMemory").Value, out bool databaseInMemory);
 
-        services.AddDbContext<AppDbContext>(dbOpt =>
+        if (!databaseInMemory)
         {
-            dbOpt.UseSqlServer(connection);
-        });
+            var connection = configuration.GetConnection();
+
+            services.AddDbContext<AppDbContext>(dbOpt =>
+            {
+                dbOpt.UseSqlServer(connection);
+            });
+        }
     }
 
     private static void AddUnitOfWork(IServiceCollection services)
@@ -46,8 +51,14 @@ public static class DependencyInjection
 
     private static void AddFluentMigrator(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddFluentMigratorCore().ConfigureRunner(x => x.AddSqlServer()
+        bool.TryParse(configuration.GetSection("Configurations:DatabaseInMemory").Value,out bool databaseInMemory);
+
+        if (!databaseInMemory)
+        {
+            services.AddFluentMigratorCore().ConfigureRunner(x => x.AddSqlServer()
             .WithGlobalConnectionString(configuration.GetFullConnection()).ScanIn(Assembly.Load("Infrastructure"))
             .For.All());
+        }
+
     }
 }
