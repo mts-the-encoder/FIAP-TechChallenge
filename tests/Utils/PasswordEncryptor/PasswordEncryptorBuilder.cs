@@ -6,6 +6,6 @@ public class PasswordEncryptorBuilder
 {
     public static Encryptor Instance()
     {
-        return new Encryptor("AliceInChains");
+        return new Encryptor("WXYZ789");
     }
 }

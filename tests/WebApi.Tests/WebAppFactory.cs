@@ -1,4 +1,5 @@
-﻿using Infrastructure.RepositoryAccess;
+﻿using Domain.Entities;
+using Infrastructure.RepositoryAccess;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,9 @@ namespace WebApi.Tests;
 
 public class WebAppFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
+    private User _user;
+    private string _password;
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test")
@@ -33,6 +37,12 @@ public class WebAppFactory<TStartup> : WebApplicationFactory<TStartup> where TSt
                 var database = scopedService.GetRequiredService<AppDbContext>();
 
                 database.Database.EnsureDeleted();
+
+                (_user, _password) = ContextSeedInMemory.Seed(database);
             });
     }
+
+    public User GetUser() => _user;
+
+    public string GetPassword() => _password;
 }

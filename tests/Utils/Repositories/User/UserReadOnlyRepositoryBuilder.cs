@@ -27,6 +27,14 @@ public class UserReadOnlyRepositoryBuilder
         return this;
     }
 
+    public UserReadOnlyRepositoryBuilder GetByEmailAndPassword(Domain.Entities.User user)
+    {
+        _repository.Setup(x => x.Login(user.Email, user.Password))
+            .ReturnsAsync(user);
+
+        return this;
+    }
+
     public IUserReadOnlyRepository Build()
     {
         return _repository.Object;
