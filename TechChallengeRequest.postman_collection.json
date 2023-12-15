@@ -98,6 +98,9 @@
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.have.jsonBody(\"token\");\r",
 							"    pm.response.to.have.jsonBody(\"name\");\r",
+							"\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"TOKEN\", jsonData.token);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -151,6 +154,116 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/login",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePassword",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let newPassword = pm.variables.replaceIn('{{$randomPassword}}');\r",
+							"\r",
+							"postman.setGlobalVariable(\"NEWPASSWORD\", newPassword);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"change password\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    var newPassword = postman.getGlobalVariable(\"NEWPASSWORD\");\r",
+							"\r",
+							"    pm.environment.set(\"PASSWORD\", newPassword);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"currentPassword\": \"{{PASSWORD}}\",\r\n  \"newPassword\": \"{{NEWPASSWORD}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/user/update-password",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"user",
+						"update-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginAfterPasswordChange",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.have.jsonBody(\"token\");\r",
+							"    pm.response.to.have.jsonBody(\"name\");\r",
+							"\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.environment.set(\"TOKEN\", jsonData.token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{EMAIL}}\",\r\n  \"password\": \"{{PASSWORD}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
