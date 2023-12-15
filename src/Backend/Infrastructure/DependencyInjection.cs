@@ -1,20 +1,19 @@
 ﻿using Domain.Extension;
+using Domain.Repositories.User;
 using FluentMigrator.Runner;
 using Infrastructure.RepositoryAccess;
 using Infrastructure.RepositoryAccess.Repository;
 using Infrastructure.RepositoryAccess.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.SqlServer.Management.Smo;
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Domain.Repositories.User;
 
 namespace Infrastructure;
 
 public static class DependencyInjection
 {
-    public static void AddRepository(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddFluentMigrator(services, configuration);
 
@@ -25,7 +24,7 @@ public static class DependencyInjection
 
     private static void AddContext(IServiceCollection services, IConfiguration configuration)
     {
-        bool.TryParse(configuration.GetSection("Configurations:DatabaseInMemory").Value, out bool databaseInMemory);
+        bool.TryParse(configuration.GetSection("Configurations:Password:DatabaseInMemory").Value, out bool databaseInMemory);
 
         if (!databaseInMemory)
         {

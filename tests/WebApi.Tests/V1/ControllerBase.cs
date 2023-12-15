@@ -1,10 +1,7 @@
-﻿using System.Globalization;
+﻿using Communication.Requests;
+using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;
-using Communication.Requests;
-using Exceptions;
-using FluentAssertions;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace WebApi.Tests.V1;

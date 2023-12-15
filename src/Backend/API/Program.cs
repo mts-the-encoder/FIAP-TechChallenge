@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Host.UseSerilog();
 
-builder.Services.AddRepository(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
 
 builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionsFilter)));

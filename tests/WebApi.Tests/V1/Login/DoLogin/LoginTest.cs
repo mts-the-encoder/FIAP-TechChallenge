@@ -1,10 +1,9 @@
-﻿using System.Net;
-using System.Text.Json;
-using Communication.Requests;
+﻿using Communication.Requests;
 using Exceptions;
 using FluentAssertions;
+using System.Net;
+using System.Text.Json;
 using Utils.Entities;
-using Utils.Requests;
 using Xunit;
 
 namespace WebApi.Tests.V1.Login.DoLogin;

@@ -27,14 +27,14 @@ public static class DependencyInjection
 
     private static void AddAdditionalKeyPassword(IServiceCollection services, IConfiguration configuration)
     {
-        var value = configuration.GetValue<string>("Configurations:AdditionalKey");
+        var value = configuration.GetValue<string>("Configurations:Password:AdditionalKey");
         services.AddScoped(opt => new Encryptor(value));
     }
 
     private static void AddTokenJWT(IServiceCollection services, IConfiguration configuration)
     {
-        var sectionLifeTime = configuration.GetValue<string>("Configurations:LifeTime");
-        var sectionToken = configuration.GetValue<string>("Configurations:TokenKey");
+        var sectionLifeTime = configuration.GetValue<string>("Configurations:Jwt:LifeTimeInMinutes");
+        var sectionToken = configuration.GetValue<string>("Configurations:Jwt:TokenKey");
 
         services.AddScoped(opt => new TokenService(int.Parse(sectionLifeTime), sectionToken));
     }

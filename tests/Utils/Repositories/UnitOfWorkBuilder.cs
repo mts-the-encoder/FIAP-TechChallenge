@@ -1,5 +1,4 @@
-﻿using Domain.Repositories.User;
-using Infrastructure.RepositoryAccess.UnitOfWork;
+﻿using Infrastructure.RepositoryAccess.UnitOfWork;
 using Moq;
 
 namespace Utils.Repositories;
