@@ -63,7 +63,7 @@ public class CreateUserValidatorTest
     }
 
     [Fact]
-    public void Validate_Error_Short_Password()
+    public void Validate_Error_Blank_Password()
     {
         var validator = new CreateValidator();
 
@@ -82,7 +82,7 @@ public class CreateUserValidatorTest
     [InlineData(3)]
     [InlineData(4)]
     [InlineData(5)]
-    public void Validate_Error_Blank_Password(int passwordLength)
+    public void Validate_Error_Short_Password(int passwordLength)
     {
         var validator = new CreateValidator();
 
