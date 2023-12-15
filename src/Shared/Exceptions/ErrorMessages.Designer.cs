@@ -133,6 +133,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Senha atual é invalida..
+        /// </summary>
+        public static string SENHA_ATUAL_INVALIDA {
+            get {
+                return ResourceManager.GetString("SENHA_ATUAL_INVALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A senha deve conter no minímo 6 caracteres.
         /// </summary>
         public static string SENHA_CURTA {
@@ -165,6 +174,24 @@ namespace Exceptions {
         public static string TELEFONE_INVALIDO {
             get {
                 return ResourceManager.GetString("TELEFONE_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faça login novamente..
+        /// </summary>
+        public static string TOKEN_EXPIRADO {
+            get {
+                return ResourceManager.GetString("TOKEN_EXPIRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Você não tem permissão para acessar..
+        /// </summary>
+        public static string USUARIO_SEM_PERMISSAO {
+            get {
+                return ResourceManager.GetString("USUARIO_SEM_PERMISSAO", resourceCulture);
             }
         }
     }

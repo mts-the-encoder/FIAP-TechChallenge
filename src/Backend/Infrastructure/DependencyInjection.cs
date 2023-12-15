@@ -46,7 +46,8 @@ public static class DependencyInjection
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUserReadOnlyRepository, UserRepository>()
-            .AddScoped<IUserWriteOnlyRepository, UserRepository>();
+            .AddScoped<IUserWriteOnlyRepository, UserRepository>()
+            .AddScoped<IUserUpdateOnlyRepository, UserRepository>();
     }
 
     private static void AddFluentMigrator(this IServiceCollection services, IConfiguration configuration)

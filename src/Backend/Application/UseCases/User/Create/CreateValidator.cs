@@ -14,16 +14,11 @@ public class CreateValidator : AbstractValidator<UserRequest>
         RuleFor(x => x.Email).NotEmpty().WithMessage(ErrorMessages.EMAIL_EM_BRANCO);
         RuleFor(x => x.Phone).NotEmpty().WithMessage(ErrorMessages.TELEFONE_EM_BRANCO);
         RuleFor(x => x.CNPJ).NotEmpty().WithMessage(ErrorMessages.CNPJ_EM_BRANCO);
-        RuleFor(x => x.Password).NotEmpty().WithMessage(ErrorMessages.SENHA_EM_BRANCO);
+        RuleFor(x => x.Password).SetValidator(new PasswordValidator());
 
         When(x => !string.IsNullOrWhiteSpace(x.Email), () =>
         {
             RuleFor(x => x.Email).EmailAddress().WithMessage(ErrorMessages.EMAIL_INVALIDO);
-        });
-
-        When(x => !string.IsNullOrWhiteSpace(x.Password), () =>
-        {
-            RuleFor(x => x.Password).MinimumLength(6).WithMessage(ErrorMessages.SENHA_CURTA);
         });
 
         When(x => !string.IsNullOrWhiteSpace(x.Phone), () =>

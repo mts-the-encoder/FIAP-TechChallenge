@@ -16,6 +16,13 @@ public class TokenService
         _securityKey = securityKey;
     }
 
+    public string GetEmail(string token)
+    {
+        var claims = ValidateToken(token);
+
+        return claims.FindFirst(EmailAlias).Value;
+    }
+
     public string GenerateToken(string userEmail)
     {
         var claims = new List<Claim>()
@@ -37,7 +44,7 @@ public class TokenService
         return tokenHandler.WriteToken(token);
     }
 
-    public void ValidateToken(string token)
+    public ClaimsPrincipal ValidateToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -45,10 +52,14 @@ public class TokenService
         {
             RequireExpirationTime = true,
             IssuerSigningKey = SymmetricKey(),
-            ClockSkew = new TimeSpan(0)
+            ClockSkew = new TimeSpan(0),
+            ValidateIssuer = false,
+            ValidateAudience = false
         };
 
-        tokenHandler.ValidateToken(token, validationParameters, out _);
+       var claims = tokenHandler.ValidateToken(token, validationParameters, out _);
+
+       return claims;
     }
 
     private SymmetricSecurityKey SymmetricKey()

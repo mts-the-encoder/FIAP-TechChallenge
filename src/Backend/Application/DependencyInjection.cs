@@ -1,7 +1,9 @@
 ﻿using Application.Services.Cryptography;
 using Application.Services.Token;
+using Application.Services.UserSigned;
 using Application.UseCases.Login.DoLogin;
 using Application.UseCases.User.Create;
+using Application.UseCases.User.UpdatePassword;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SqlServer.Management.Smo.Wmi;
@@ -14,8 +16,13 @@ public static class DependencyInjection
     {
         AddAdditionalKeyPassword(services, configuration);
         AddTokenJWT(services, configuration);
-
+        AddUserSigned(services);
         AddUseCase(services);
+    }
+
+    private static void AddUserSigned(IServiceCollection services)
+    {
+        services.AddScoped<IUserSigned, UserSigned>();
     }
 
     private static void AddAdditionalKeyPassword(IServiceCollection services, IConfiguration configuration)
@@ -35,6 +42,7 @@ public static class DependencyInjection
     private static void AddUseCase(IServiceCollection services)
     {
         services.AddScoped<ICreateUseCase, CreateUseCase>()
-            .AddScoped<ILoginUseCase, LoginUseCase>();
+            .AddScoped<ILoginUseCase, LoginUseCase>()
+            .AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>();
     }
 }
