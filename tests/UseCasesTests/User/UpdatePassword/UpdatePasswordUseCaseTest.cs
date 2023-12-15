@@ -86,7 +86,6 @@ public class UpdatePasswordUseCaseTest
         var repository = UserUpdateOnlyRepositoryBuilder.Instance().GetById(user).Build();
         var userSigned = UserSignedBuilder.Instance().GetUser(user).Build();
 
-
         return new UpdatePasswordUseCase(repository, userSigned, encryptor, unitOfWork);
     }
 }

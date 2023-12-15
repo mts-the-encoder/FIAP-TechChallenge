@@ -4,8 +4,11 @@ using Communication.Requests;
 using Domain.Repositories.User;
 using Exceptions;
 using Exceptions.ExceptionBase;
+using FluentMigrator.Infrastructure;
 using FluentValidation.Results;
 using Infrastructure.RepositoryAccess.UnitOfWork;
+using Serilog;
+using ErrorMessages = Exceptions.ErrorMessages;
 
 namespace Application.UseCases.User.UpdatePassword;
 
@@ -52,6 +55,12 @@ public class UpdatePasswordUseCase : IUpdatePasswordUseCase
         if (!result.IsValid)
         {
             var messages = result.Errors.Select(x => x.ErrorMessage).ToList();
+
+            var concatenatedErrors = string.Join("\n", messages);
+
+            Log.ForContext("UserName", user.Email)
+                .Error($"{concatenatedErrors}");
+
             throw new ValidationErrorsException(messages);
         }
     }

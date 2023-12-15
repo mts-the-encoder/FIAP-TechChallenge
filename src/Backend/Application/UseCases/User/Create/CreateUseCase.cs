@@ -67,7 +67,7 @@ public class CreateUseCase : ICreateUseCase
 
             var concatenatedErrors = string.Join("\n", errorMessages);
 
-            Log.ForContext("UserName",request.Email)
+            Log.ForContext("UserName", request.Email)
                 .Error($"{concatenatedErrors}");
 
             throw new ValidationErrorsException(errorMessages);
