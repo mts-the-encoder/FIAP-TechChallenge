@@ -3,5 +3,5 @@
 public enum VersionsNumber
 {
     UserTable = 1,
-    Investment = 2
+    InvestmentTable = 2
 }
