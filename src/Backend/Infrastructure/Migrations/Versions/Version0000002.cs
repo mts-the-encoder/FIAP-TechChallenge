@@ -35,9 +35,9 @@ public class Version0000002 : Migration
         table
             .WithColumn("Sender").AsString(100).NotNullable()
             .WithColumn("Name").AsString(20).NotNullable()
-            .WithColumn("MinimumInvestment").AsInt64().NotNullable()
+            .WithColumn("MinimumInvestment").AsDouble().NotNullable()
             .WithColumn("InvestmentVariableType").AsInt64().NotNullable()
-            .WithColumn("Dividends").AsInt64().NotNullable()
+            .WithColumn("Dividends").AsDouble().NotNullable()
             .WithColumn("Sector").AsInt16().NotNullable();
     }
 }

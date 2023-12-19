@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Domain.Repositories.Investments;
 
 namespace Infrastructure;
 
@@ -46,7 +47,8 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserReadOnlyRepository, UserRepository>()
             .AddScoped<IUserWriteOnlyRepository, UserRepository>()
-            .AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+            .AddScoped<IUserUpdateOnlyRepository, UserRepository>()
+            .AddScoped<IInvestmentWriteOnlyRepository, InvestmentRepository>();
     }
 
     private static void AddFluentMigrator(this IServiceCollection services, IConfiguration configuration)
