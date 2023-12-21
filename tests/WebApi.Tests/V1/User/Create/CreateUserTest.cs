@@ -1,9 +1,7 @@
-﻿using System.Net;
-using System.Text.Json;
-using Communication.Requests;
-using Exceptions;
+﻿using Exceptions;
 using FluentAssertions;
-using Microsoft.Identity.Client;
+using System.Net;
+using System.Text.Json;
 using Utils.Requests;
 using Xunit;
 

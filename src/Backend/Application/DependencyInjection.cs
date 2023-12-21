@@ -7,7 +7,6 @@ using Application.UseCases.User.UpdatePassword;
 using Application.UseCases.VariableIncome.Create;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.SqlServer.Management.Smo.Wmi;
 
 namespace Application;
 

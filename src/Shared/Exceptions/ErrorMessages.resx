@@ -123,6 +123,12 @@
   <data name="CNPJ_INVALIDO" xml:space="preserve">
     <value>O cnpj não está no formato correto: XX.XXX.XXX/YYYY-ZZ</value>
   </data>
+  <data name="DATA_VENCIMENTO_INVALIDA" xml:space="preserve">
+    <value>Data de vencimento é inválida.</value>
+  </data>
+  <data name="DIVIDENDOS_DEVE_SER_MAIOR_OU_IGUAL_A_0" xml:space="preserve">
+    <value>Dividendos devem ser maiores ou iguais a 0.20</value>
+  </data>
   <data name="EMAIL_EM_BRANCO" xml:space="preserve">
     <value>O e-mail deve ser preenchido.</value>
   </data>
@@ -132,14 +138,32 @@
   <data name="EMAIL_REGISTRADO" xml:space="preserve">
     <value>Esse email já está cadastrado.</value>
   </data>
+  <data name="EMISSOR_NAO_PODE_SER_VAZIO" xml:space="preserve">
+    <value>EMISSOR_NAO_PODE_SER_VAZIO</value>
+  </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Erro desconhecido.</value>
+  </data>
+  <data name="INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_0" xml:space="preserve">
+    <value>Investimento mínimo deve ser maior que 1.</value>
+  </data>
+  <data name="INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_50" xml:space="preserve">
+    <value>Investimento mínimo deve ser maior que 50.</value>
+  </data>
+  <data name="IR_NAO_PODE_SER_VAZIO_MAIOR_OU_IGUAL_A_10" xml:space="preserve">
+    <value>Imposto de Renda não pode ser vazio e deve ser maior ou igual a 10.</value>
   </data>
   <data name="LOGIN_INVALIDO" xml:space="preserve">
     <value>O e-mail e/ou senha estão incorretos.</value>
   </data>
   <data name="NOME_EM_BRANCO" xml:space="preserve">
     <value>O nome deve ser preenchido.</value>
+  </data>
+  <data name="NOME_NAO_PODE_SER_VAZIO" xml:space="preserve">
+    <value>Nome não pode ser vazio.</value>
+  </data>
+  <data name="RENTABILIDADE_NAO_PODE_SER_VAZIA" xml:space="preserve">
+    <value>Rentabilidade não pode ser vazia.</value>
   </data>
   <data name="SENHA_ATUAL_INVALIDA" xml:space="preserve">
     <value>Senha atual é invalida.</value>
@@ -150,11 +174,20 @@
   <data name="SENHA_EM_BRANCO" xml:space="preserve">
     <value>A senha deve ser preenchida.</value>
   </data>
+  <data name="SETOR_INVALIDO" xml:space="preserve">
+    <value>Setor é inválido.</value>
+  </data>
   <data name="TELEFONE_EM_BRANCO" xml:space="preserve">
     <value>O telefone deve ser informado.</value>
   </data>
   <data name="TELEFONE_INVALIDO" xml:space="preserve">
     <value>O telefone não está no formato correto: XX X XXXX-XXXX</value>
+  </data>
+  <data name="TIPO_INVESTIMENTO_FIXO_INVALIDO" xml:space="preserve">
+    <value>Tipo de investimento fixo é inválido.</value>
+  </data>
+  <data name="TIPO_INVESTIMENTO_VARIAVEL_INVALIDO" xml:space="preserve">
+    <value>Tipo de investimento variável é inválido.</value>
   </data>
   <data name="TOKEN_EXPIRADO" xml:space="preserve">
     <value>Faça login novamente.</value>

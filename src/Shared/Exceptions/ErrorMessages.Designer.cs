@@ -79,6 +79,24 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data de vencimento é inválida..
+        /// </summary>
+        public static string DATA_VENCIMENTO_INVALIDA {
+            get {
+                return ResourceManager.GetString("DATA_VENCIMENTO_INVALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dividendos devem ser maiores ou iguais a 0.20.
+        /// </summary>
+        public static string DIVIDENDOS_DEVE_SER_MAIOR_OU_IGUAL_A_0 {
+            get {
+                return ResourceManager.GetString("DIVIDENDOS_DEVE_SER_MAIOR_OU_IGUAL_A_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O e-mail deve ser preenchido..
         /// </summary>
         public static string EMAIL_EM_BRANCO {
@@ -106,11 +124,47 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EMISSOR_NAO_PODE_SER_VAZIO.
+        /// </summary>
+        public static string EMISSOR_NAO_PODE_SER_VAZIO {
+            get {
+                return ResourceManager.GetString("EMISSOR_NAO_PODE_SER_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erro desconhecido..
         /// </summary>
         public static string ERRO_DESCONHECIDO {
             get {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Investimento mínimo deve ser maior que 1..
+        /// </summary>
+        public static string INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_0 {
+            get {
+                return ResourceManager.GetString("INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Investimento mínimo deve ser maior que 50..
+        /// </summary>
+        public static string INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_50 {
+            get {
+                return ResourceManager.GetString("INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imposto de Renda não pode ser vazio e deve ser maior ou igual a 10..
+        /// </summary>
+        public static string IR_NAO_PODE_SER_VAZIO_MAIOR_OU_IGUAL_A_10 {
+            get {
+                return ResourceManager.GetString("IR_NAO_PODE_SER_VAZIO_MAIOR_OU_IGUAL_A_10", resourceCulture);
             }
         }
         
@@ -129,6 +183,24 @@ namespace Exceptions {
         public static string NOME_EM_BRANCO {
             get {
                 return ResourceManager.GetString("NOME_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nome não pode ser vazio..
+        /// </summary>
+        public static string NOME_NAO_PODE_SER_VAZIO {
+            get {
+                return ResourceManager.GetString("NOME_NAO_PODE_SER_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rentabilidade não pode ser vazia..
+        /// </summary>
+        public static string RENTABILIDADE_NAO_PODE_SER_VAZIA {
+            get {
+                return ResourceManager.GetString("RENTABILIDADE_NAO_PODE_SER_VAZIA", resourceCulture);
             }
         }
         
@@ -160,6 +232,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setor é inválido..
+        /// </summary>
+        public static string SETOR_INVALIDO {
+            get {
+                return ResourceManager.GetString("SETOR_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O telefone deve ser informado..
         /// </summary>
         public static string TELEFONE_EM_BRANCO {
@@ -174,6 +255,24 @@ namespace Exceptions {
         public static string TELEFONE_INVALIDO {
             get {
                 return ResourceManager.GetString("TELEFONE_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de investimento fixo é inválido..
+        /// </summary>
+        public static string TIPO_INVESTIMENTO_FIXO_INVALIDO {
+            get {
+                return ResourceManager.GetString("TIPO_INVESTIMENTO_FIXO_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de investimento variável é inválido..
+        /// </summary>
+        public static string TIPO_INVESTIMENTO_VARIAVEL_INVALIDO {
+            get {
+                return ResourceManager.GetString("TIPO_INVESTIMENTO_VARIAVEL_INVALIDO", resourceCulture);
             }
         }
         

@@ -23,6 +23,15 @@ public class ControllerBase : IClassFixture<WebAppFactory<Program>>
         return await _client.PostAsync(method, new StringContent(jsonString, Encoding.UTF8, "application/json"));
     }
 
+    protected async Task<HttpResponseMessage> PostRequest(string method, object body, string token = "")
+    {
+        AuthorizeRequest(token);
+
+        var jsonString = JsonConvert.SerializeObject(body);
+
+        return await _client.PostAsync(method,new StringContent(jsonString, Encoding.UTF8,"application/json"));
+    }
+
     protected async Task<HttpResponseMessage> PutRequest(string method, object body, string token = "")
     {
         AuthorizeRequest(token);
