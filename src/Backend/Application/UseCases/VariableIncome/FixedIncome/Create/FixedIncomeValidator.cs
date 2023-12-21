@@ -7,7 +7,7 @@ public class FixedIncomeValidator : AbstractValidator<FixedIncomeRequest>
 {
     public FixedIncomeValidator()
     {
-        RuleFor(x => x.Sender).NotEmpty().WithMessage("");
+        RuleFor(x => x.Sender).NotEmpty().WithMessage("x");
         RuleFor(x => x.MinimumInvestment).GreaterThan(50.0).WithMessage("");
         RuleFor(x => x.InvestmentFixedType).IsInEnum().WithMessage("");
         RuleFor(x => x.Profitability).NotEmpty().WithMessage("");

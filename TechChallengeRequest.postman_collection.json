@@ -281,6 +281,168 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "CreateVariableIncomeFII",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Investments\r",
+							"var acao = 0;\r",
+							"pm.environment.set('acao', acao);\r",
+							"\r",
+							"var fii = 1;\r",
+							"pm.environment.set('fii', fii);\r",
+							"\r",
+							"// Sectors\r",
+							"var tijolo = 0;\r",
+							"pm.environment.set('tijolo', tijolo);\r",
+							"\r",
+							"var papel = 1;\r",
+							"pm.environment.set('papel', papel);\r",
+							"\r",
+							"var hibrido = 2;\r",
+							"pm.environment.set('hibrido', hibrido);\r",
+							"\r",
+							"var fiiName = `{{$randomCompanySuffix}}11`;\r",
+							"pm.environment.set('fiiName', fiiName);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate request with successfull\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody(\"investmentVariableType\");\r",
+							"    pm.response.to.have.jsonBody(\"sender\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sender\": \"{{$randomCompanyName}}\",\r\n  \"name\": \"{{fiiName}}\",\r\n  \"minimumInvestment\": {{$randomPrice}},\r\n  \"investmentVariableType\": {{fii}},\r\n  \"dividends\": {{$randomPrice}},\r\n  \"sector\": {{tijolo}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/variableincome",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"variableincome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateVariableIncomeAcao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Investments\r",
+							"var acao = 0;\r",
+							"pm.environment.set('acao', acao);\r",
+							"\r",
+							"var fii = 1;\r",
+							"pm.environment.set('fii', fii);\r",
+							"\r",
+							"// Sectors\r",
+							"var tijolo = 0;\r",
+							"pm.environment.set('tijolo', tijolo);\r",
+							"\r",
+							"var papel = 1;\r",
+							"pm.environment.set('papel', papel);\r",
+							"\r",
+							"var hibrido = 2;\r",
+							"pm.environment.set('hibrido', hibrido);\r",
+							"\r",
+							"var classNumber = _.random(1, 9);\r",
+							"\r",
+							"var acaoName = `{{$randomCompanySuffix}}${classNumber}`;\r",
+							"pm.environment.set('acaoName', acaoName);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate request with successfull\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody(\"id\");\r",
+							"    pm.response.to.have.jsonBody(\"sector\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sender\": \"{{$randomCompanyName}}\",\r\n  \"name\": \"{{acaoName}}\",\r\n  \"minimumInvestment\": {{$randomPrice}},\r\n  \"investmentVariableType\": {{acao}},\r\n  \"dividends\": {{$randomPrice}},\r\n  \"sector\": {{hibrido}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/variableincome",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"variableincome"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

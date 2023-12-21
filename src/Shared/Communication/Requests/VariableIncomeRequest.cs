@@ -1,11 +1,13 @@
-﻿namespace Communication.Requests;
+﻿using Communication.Enum;
+
+namespace Communication.Requests;
 
 public class VariableIncomeRequest
 {
     public string Sender { get; set; }
     public string Name { get; set; }
     public double MinimumInvestment { get; set; }
-    public int InvestmentVariableType { get; set; }
+    public InvestmentVariableType InvestmentVariableType { get; set; }
     public double Dividends { get; set; }
-    public int Sector { get; set; }
+    public Sector Sector { get; set; }
 }

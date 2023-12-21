@@ -26,7 +26,7 @@ public class Version0000002 : Migration
             .WithColumn("Profitability").AsString(100).NotNullable()
             .WithColumn("MaturityDate").AsDate().NotNullable()
             .WithColumn("IR").AsInt16().NotNullable()
-            .WithColumn("UserId").AsInt64().NotNullable();
+            .WithColumn("UserId").AsInt64().NotNullable().ForeignKey("FK_VariableIncome_User_Id", "Users", "Id");
     }
 
     private void CreateVariableIncome()
@@ -39,6 +39,7 @@ public class Version0000002 : Migration
             .WithColumn("MinimumInvestment").AsDouble().NotNullable()
             .WithColumn("InvestmentVariableType").AsInt64().NotNullable()
             .WithColumn("Dividends").AsDouble().NotNullable()
-            .WithColumn("Sector").AsInt16().NotNullable();
+            .WithColumn("Sector").AsInt16().NotNullable()
+            .WithColumn("UserId").AsInt64().NotNullable().ForeignKey("FK_FixedIncome_User_Id","Users","Id");
     }
 }

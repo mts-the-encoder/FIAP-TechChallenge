@@ -1,5 +1,6 @@
 ﻿using Application.Services.Mapper;
 using AutoMapper;
+using Bogus;
 
 namespace Utils.Mapper;
 
