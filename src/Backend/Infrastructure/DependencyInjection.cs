@@ -48,7 +48,8 @@ public static class DependencyInjection
         services.AddScoped<IUserReadOnlyRepository, UserRepository>()
             .AddScoped<IUserWriteOnlyRepository, UserRepository>()
             .AddScoped<IUserUpdateOnlyRepository, UserRepository>()
-            .AddScoped<IInvestmentWriteOnlyRepository, InvestmentRepository>();
+            .AddScoped<IVariableIncomeWriteOnlyRepository, VariableIncomeRepository>()
+            .AddScoped<IFixedIncomeWriteOnlyRepository, FixedIncomeWriteOnlyRepository>();
     }
 
     private static void AddFluentMigrator(this IServiceCollection services, IConfiguration configuration)

@@ -12,7 +12,7 @@ using ErrorMessages = Exceptions.ErrorMessages;
 
 namespace Application.UseCases.User.Create;
 
-public class CreateUseCase : ICreateUseCase
+public class CreateUserUseCase : ICreateUserUseCase
 {
     private readonly IUserReadOnlyRepository _readRepository;
     private readonly IUserWriteOnlyRepository _writeRepository;
@@ -21,7 +21,7 @@ public class CreateUseCase : ICreateUseCase
     private readonly Encryptor _encryptor;
     private readonly TokenService _tokenService;
 
-    public CreateUseCase(IUserWriteOnlyRepository writeRepository, IMapper mapper, IUnitOfWork unitOfWork, Encryptor encryptor, TokenService tokenService, IUserReadOnlyRepository readRepository)
+    public CreateUserUseCase(IUserWriteOnlyRepository writeRepository, IMapper mapper, IUnitOfWork unitOfWork, Encryptor encryptor, TokenService tokenService, IUserReadOnlyRepository readRepository)
     {
         _writeRepository = writeRepository;
         _mapper = mapper;
@@ -52,7 +52,7 @@ public class CreateUseCase : ICreateUseCase
 
     private async Task Validate(UserRequest request)
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
         var result = await validator.ValidateAsync(request);
 
         var existsUser = await _readRepository.ExistsByEmail(request.Email);

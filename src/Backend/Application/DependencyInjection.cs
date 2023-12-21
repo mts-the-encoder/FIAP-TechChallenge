@@ -4,6 +4,7 @@ using Application.Services.UserSigned;
 using Application.UseCases.Login.DoLogin;
 using Application.UseCases.User.Create;
 using Application.UseCases.User.UpdatePassword;
+using Application.UseCases.VariableIncome.Create;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SqlServer.Management.Smo.Wmi;
@@ -16,6 +17,7 @@ public static class DependencyInjection
     {
         AddAdditionalKeyPassword(services, configuration);
         AddTokenJWT(services, configuration);
+        AddHashIds(services, configuration);
         AddUserSigned(services);
         AddUseCase(services);
     }
@@ -39,10 +41,21 @@ public static class DependencyInjection
         services.AddScoped(opt => new TokenService(int.Parse(sectionLifeTime), sectionToken));
     }
 
+    private static void AddHashIds(IServiceCollection services, IConfiguration configuration)
+    {
+        var salt = configuration.GetRequiredSection("Configurations:HashIds:Salt");
+        services.AddHashids(setup =>
+        {
+            setup.Salt = salt.Value;
+            setup.MinHashLength = 3;
+        });
+    }
+
     private static void AddUseCase(IServiceCollection services)
     {
-        services.AddScoped<ICreateUseCase, CreateUseCase>()
+        services.AddScoped<ICreateUserUseCase, CreateUserUseCase>()
             .AddScoped<ILoginUseCase, LoginUseCase>()
-            .AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>();
+            .AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>()
+            .AddScoped<ICreateVariableIncomeUseCase, CreateVariableIncomeUseCase>();
     }
 }

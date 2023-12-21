@@ -25,7 +25,8 @@ public class Version0000002 : Migration
             .WithColumn("InvestmentFixedType").AsInt16().NotNullable()
             .WithColumn("Profitability").AsString(100).NotNullable()
             .WithColumn("MaturityDate").AsDate().NotNullable()
-            .WithColumn("IR").AsInt16().NotNullable();
+            .WithColumn("IR").AsInt16().NotNullable()
+            .WithColumn("UserId").AsInt64().NotNullable();
     }
 
     private void CreateVariableIncome()

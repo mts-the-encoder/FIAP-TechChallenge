@@ -56,7 +56,7 @@ public class CreateUserUseCaseTest
                 .Contains(ErrorMessages.EMAIL_EM_BRANCO));
     }
 
-    private static CreateUseCase CreateUseCase(string email = "")
+    private static CreateUserUseCase CreateUseCase(string email = "")
     {
         var repositoryWriteOnly = UserWriteOnlyRepositoryBuilder.Instance().Build();
         var mapper = MapperBuilder.Instance();
@@ -65,6 +65,6 @@ public class CreateUserUseCaseTest
         var token = TokenServiceBuilder.Instance();
         var repositoryReadOnly = UserReadOnlyRepositoryBuilder.Instance().ExistsByEmail(email).Build();
 
-        return new CreateUseCase(repositoryWriteOnly, mapper, unitOfWork, encryptor, token, repositoryReadOnly);
+        return new CreateUserUseCase(repositoryWriteOnly, mapper, unitOfWork, encryptor, token, repositoryReadOnly);
     }
 }

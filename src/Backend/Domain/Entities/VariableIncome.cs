@@ -10,4 +10,5 @@ public class VariableIncome : EntityBase
     public InvestmentVariableType InvestmentVariableType { get; set; }
     public double Dividends { get; set; }
     public Sector Sector { get; set; }
+    public long UserId { get; set; }
 }

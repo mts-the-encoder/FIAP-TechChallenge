@@ -1,14 +1,11 @@
-﻿using Domain.Enums;
+﻿namespace Communication.Requests;
 
-namespace Domain.Entities;
-
-public class FixedIncome : EntityBase
+public class FixedIncomeRequest
 {
     public string Sender { get; set; }
     public double MinimumInvestment { get; set; }
-    public InvestmentFixedType InvestmentFixedType { get; set; }
+    public int InvestmentFixedType { get; set; }
     public string Profitability { get; set; }
     public DateTime MaturityDate { get; set; }
     public int IR { get; set; }
-    public long UserId { get; set; }
 }

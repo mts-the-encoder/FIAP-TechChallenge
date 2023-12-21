@@ -6,9 +6,9 @@ using static System.Text.RegularExpressions.Regex;
 
 namespace Application.UseCases.User.Create;
 
-public class CreateValidator : AbstractValidator<UserRequest>
+public class CreateUSerValidator : AbstractValidator<UserRequest>
 {
-    public CreateValidator()
+    public CreateUSerValidator()
     {
         RuleFor(x => x.Name).NotEmpty().WithMessage(ErrorMessages.NOME_EM_BRANCO);
         RuleFor(x => x.Email).NotEmpty().WithMessage(ErrorMessages.EMAIL_EM_BRANCO);

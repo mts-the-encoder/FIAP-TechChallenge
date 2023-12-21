@@ -11,7 +11,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Success()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
 
@@ -23,7 +23,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Blank_Name()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.Name = string.Empty;
@@ -37,7 +37,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Blank_Email()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.Email = string.Empty;
@@ -51,7 +51,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Invalid_Email()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.Email = "email@";
@@ -65,7 +65,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Blank_Password()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.Password = string.Empty;
@@ -84,7 +84,7 @@ public class CreateUserValidatorTest
     [InlineData(5)]
     public void Validate_Error_Short_Password(int passwordLength)
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build(passwordLength);
 
@@ -97,7 +97,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Invalid_Phone()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.Phone = "01 0 0101-0101";
@@ -111,7 +111,7 @@ public class CreateUserValidatorTest
     [Fact]
     public void Validate_Error_Invalid_Cnpj()
     {
-        var validator = new CreateValidator();
+        var validator = new CreateUSerValidator();
 
         var request = UserRequestBuilder.Build();
         request.CNPJ = "123456780001-90";

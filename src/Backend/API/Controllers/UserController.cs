@@ -10,7 +10,7 @@ namespace API.Controllers;
 public class UserController : TechChallengeController
 {
     [HttpPost]
-    public async Task<IActionResult> Create([FromServices] ICreateUseCase useCase, [FromBody] UserRequest request)
+    public async Task<IActionResult> Create([FromServices] ICreateUserUseCase useCase, [FromBody] UserRequest request)
     {
         var response = await useCase.Execute(request);
 

@@ -2,6 +2,7 @@ using Api.Filters;
 using Application;
 using Application.Services.Mapper;
 using Domain.Extension;
+using HashidsNet;
 using Infrastructure;
 using Infrastructure.Migrations;
 using Infrastructure.RepositoryAccess;
@@ -29,7 +30,7 @@ builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionsFilter)));
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
 {
-    cfg.AddProfile(new AutoMapperConfiguration());
+    cfg.AddProfile(new AutoMapperConfiguration(provider.GetService<IHashids>()));
 }).CreateMapper());
 
 builder.Services.AddScoped<AuthenticatedUserAttribute>();
