@@ -29,6 +29,11 @@ public class AutoMapperConfiguration : Profile
 
         CreateMap<User, UserResponse>().ReverseMap()
             .ForMember(dest => dest.Password, cfg => cfg.Ignore());
+
+        CreateMap<VariableIncome, VariableIncomeDashboardResponse>().ForMember(dest => dest.Id,config => config
+            .MapFrom(x => _hashIds.EncodeLong(x.Id)))
+            .ForMember(dest => dest.Price, cfg => cfg
+                .MapFrom(x => x.MinimumInvestment)).ReverseMap();
     }
 
     private void RequestToEntity()
@@ -36,5 +41,6 @@ public class AutoMapperConfiguration : Profile
         CreateMap<UserRequest, User>().ReverseMap();
         CreateMap<VariableIncomeRequest, VariableIncome>().ReverseMap();
         CreateMap<FixedIncomeRequest, FixedIncome>().ReverseMap();
+        CreateMap<VariableDashboardRequest, VariableIncome>().ReverseMap();
     }
 }

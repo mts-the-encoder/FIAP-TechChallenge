@@ -443,6 +443,58 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetDashboardVariableIncomes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate request with successfull\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody(\"investments\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWwiOiJqb2FvLnNpbHZhQGV4YW1wbGUuY29tIiwibmJmIjoxNzAzMjYyNDU1LCJleHAiOjE3MDMzMjI0NTUsImlhdCI6MTcwMzI2MjQ1NX0.Vp9SxxILUiYu9ZqZJCTGn67wsu0peUxdJm4pklwCLhw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nameOrSender\": \"\",\r\n  \"type\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/dashboard",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"dashboard"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

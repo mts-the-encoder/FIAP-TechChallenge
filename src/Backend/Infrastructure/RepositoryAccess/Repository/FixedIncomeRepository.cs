@@ -3,10 +3,10 @@ using Domain.Repositories.Investments;
 
 namespace Infrastructure.RepositoryAccess.Repository;
 
-public class FixedIncomeWriteOnlyRepository : IFixedIncomeWriteOnlyRepository
+public class FixedIncomeRepository : IFixedIncomeWriteOnlyRepository
 {
     private readonly AppDbContext _context;
-    public FixedIncomeWriteOnlyRepository(AppDbContext context)
+    public FixedIncomeRepository(AppDbContext context)
     {
         _context = context;
     }

@@ -22,7 +22,7 @@ public class Version0000002 : Migration
         table
             .WithColumn("Sender").AsString(100).NotNullable()
             .WithColumn("MinimumInvestment").AsDouble().NotNullable()
-            .WithColumn("InvestmentFixedType").AsInt16().NotNullable()
+            .WithColumn("InvestmentFixedType").AsInt32().NotNullable()
             .WithColumn("Profitability").AsString(100).NotNullable()
             .WithColumn("MaturityDate").AsDate().NotNullable()
             .WithColumn("IR").AsInt16().NotNullable()
@@ -37,9 +37,9 @@ public class Version0000002 : Migration
             .WithColumn("Sender").AsString(100).NotNullable()
             .WithColumn("Name").AsString(20).NotNullable()
             .WithColumn("MinimumInvestment").AsDouble().NotNullable()
-            .WithColumn("InvestmentVariableType").AsInt64().NotNullable()
+            .WithColumn("InvestmentVariableType").AsInt32().NotNullable()
             .WithColumn("Dividends").AsDouble().NotNullable()
-            .WithColumn("Sector").AsInt16().NotNullable()
+            .WithColumn("Sector").AsInt32().NotNullable()
             .WithColumn("UserId").AsInt64().NotNullable().ForeignKey("FK_FixedIncome_User_Id","Users","Id");
     }
 }

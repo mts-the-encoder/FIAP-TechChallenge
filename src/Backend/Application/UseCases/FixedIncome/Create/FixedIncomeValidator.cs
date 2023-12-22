@@ -1,8 +1,9 @@
 ﻿using Communication.Requests;
+using Domain.Entities;
 using Exceptions;
 using FluentValidation;
 
-namespace Application.UseCases.VariableIncome.FixedIncome.Create;
+namespace Application.UseCases.FixedIncome.Create;
 
 public class FixedIncomeValidator : AbstractValidator<FixedIncomeRequest>
 {
