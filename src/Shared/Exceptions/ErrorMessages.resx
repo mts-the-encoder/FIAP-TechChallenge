@@ -150,6 +150,9 @@
   <data name="INVESTIMENTO_MINIMO_DEVE_SER_MAIOR_QUE_50" xml:space="preserve">
     <value>Investimento mínimo deve ser maior que 50.</value>
   </data>
+  <data name="INVESTIMENTO_NAO_ENCONTRADO" xml:space="preserve">
+    <value>Esse investimento não foi encontrado</value>
+  </data>
   <data name="IR_NAO_PODE_SER_VAZIO_MAIOR_OU_IGUAL_A_10" xml:space="preserve">
     <value>Imposto de Renda não pode ser vazio e deve ser maior ou igual a 10.</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="RENTABILIDADE_NAO_PODE_SER_VAZIA" xml:space="preserve">
     <value>Rentabilidade não pode ser vazia.</value>
+  </data>
+  <data name="s" xml:space="preserve">
+    <value />
   </data>
   <data name="SENHA_ATUAL_INVALIDA" xml:space="preserve">
     <value>Senha atual é invalida.</value>

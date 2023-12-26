@@ -160,6 +160,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse investimento não foi encontrado.
+        /// </summary>
+        public static string INVESTIMENTO_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("INVESTIMENTO_NAO_ENCONTRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imposto de Renda não pode ser vazio e deve ser maior ou igual a 10..
         /// </summary>
         public static string IR_NAO_PODE_SER_VAZIO_MAIOR_OU_IGUAL_A_10 {
@@ -201,6 +210,15 @@ namespace Exceptions {
         public static string RENTABILIDADE_NAO_PODE_SER_VAZIA {
             get {
                 return ResourceManager.GetString("RENTABILIDADE_NAO_PODE_SER_VAZIA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string s {
+            get {
+                return ResourceManager.GetString("s", resourceCulture);
             }
         }
         

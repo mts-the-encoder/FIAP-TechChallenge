@@ -1,7 +1,9 @@
 ﻿using Api.Filters;
 using Application.UseCases.VariableIncome.Create;
+using Application.UseCases.VariableIncome.GetById;
 using Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
+using HashidsModelBinder = Api.Binder.HashidsModelBinder;
 
 namespace Api.Controllers;
 
@@ -14,5 +16,14 @@ public class VariableIncomeController : TechChallengeController
          var response = await useCase.Execute(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet("{id:hashids}")]
+    public async Task<IActionResult> GetById([FromServices] IGetByIdUseCase useCase, 
+        [FromRoute] [ModelBinder(typeof(HashidsModelBinder))] long id)
+    {
+        var response = await useCase.Execute(id);
+
+        return Ok(response);
     }
 }

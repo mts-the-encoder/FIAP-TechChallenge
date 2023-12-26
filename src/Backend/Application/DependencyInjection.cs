@@ -6,6 +6,7 @@ using Application.UseCases.Login.DoLogin;
 using Application.UseCases.User.Create;
 using Application.UseCases.User.UpdatePassword;
 using Application.UseCases.VariableIncome.Create;
+using Application.UseCases.VariableIncome.GetById;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -57,6 +58,7 @@ public static class DependencyInjection
             .AddScoped<ILoginUseCase, LoginUseCase>()
             .AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>()
             .AddScoped<ICreateVariableIncomeUseCase, CreateVariableIncomeUseCase>()
-            .AddScoped<IDashboardVariableUseCase, DashboardVariableUseCase>();
+            .AddScoped<IDashboardVariableUseCase, DashboardVariableUseCase>()
+            .AddScoped<IGetByIdUseCase, GetByIdUseCase>();
     }
 }
