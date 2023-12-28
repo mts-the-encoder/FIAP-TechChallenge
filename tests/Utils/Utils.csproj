@@ -18,8 +18,4 @@
     <ProjectReference Include="..\..\src\Shared\Communication\Communication.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\FixedIncome\" />
-  </ItemGroup>
-
 </Project>

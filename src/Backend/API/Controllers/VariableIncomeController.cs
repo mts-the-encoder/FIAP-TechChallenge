@@ -39,7 +39,6 @@ public class VariableIncomeController : TechChallengeController
         return Ok(response);
     }
 
-
     [HttpDelete("{id:hashids}")]
     public async Task<IActionResult> Delete([FromServices] IDeleteVariableIncomeUseCase useCase,
         [FromRoute][ModelBinder(typeof(HashidsModelBinder))] long id)
