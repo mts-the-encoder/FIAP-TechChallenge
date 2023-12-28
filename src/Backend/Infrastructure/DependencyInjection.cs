@@ -50,6 +50,7 @@ public static class DependencyInjection
             .AddScoped<IUserUpdateOnlyRepository, UserRepository>()
             .AddScoped<IVariableIncomeWriteOnlyRepository, VariableIncomeRepository>()
             .AddScoped<IVariableIncomeReadOnlyRepository, VariableIncomeRepository>()
+            .AddScoped<IVariableIncomeUpdateOnlyRepository, VariableIncomeRepository>()
             .AddScoped<IFixedIncomeWriteOnlyRepository, FixedIncomeRepository>();
     }
 

@@ -1,4 +1,5 @@
 ﻿using Api.Filters;
+using Application.UseCases.Update;
 using Application.UseCases.VariableIncome.Create;
 using Application.UseCases.VariableIncome.GetById;
 using Communication.Requests;
@@ -23,6 +24,16 @@ public class VariableIncomeController : TechChallengeController
         [FromRoute] [ModelBinder(typeof(HashidsModelBinder))] long id)
     {
         var response = await useCase.Execute(id);
+
+        return Ok(response);
+    }
+
+    [HttpPut("{id:hashids}")]
+    public async Task<IActionResult> Update([FromServices] IUpdateVariableIncomeUseCase useCase,
+        [FromBody] VariableIncomeRequest request,
+        [FromRoute][ModelBinder(typeof(HashidsModelBinder))] long id)
+    {
+        var response = await useCase.Execute(id, request);
 
         return Ok(response);
     }

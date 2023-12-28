@@ -3,6 +3,7 @@ using Application.Services.Token;
 using Application.Services.UserSigned;
 using Application.UseCases.DashboardVariable;
 using Application.UseCases.Login.DoLogin;
+using Application.UseCases.Update;
 using Application.UseCases.User.Create;
 using Application.UseCases.User.UpdatePassword;
 using Application.UseCases.VariableIncome.Create;
@@ -59,6 +60,7 @@ public static class DependencyInjection
             .AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>()
             .AddScoped<ICreateVariableIncomeUseCase, CreateVariableIncomeUseCase>()
             .AddScoped<IDashboardVariableUseCase, DashboardVariableUseCase>()
-            .AddScoped<IGetByIdUseCase, GetByIdUseCase>();
+            .AddScoped<IGetByIdUseCase, GetByIdUseCase>()
+            .AddScoped<IUpdateVariableIncomeUseCase, UpdateVariableIncomeUseCase>();
     }
 }
