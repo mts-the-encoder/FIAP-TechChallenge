@@ -343,7 +343,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"sender\": \"{{$randomCompanyName}}\",\r\n  \"name\": \"{{fiiName}}\",\r\n  \"minimumInvestment\": {{$randomPrice}},\r\n  \"investmentVariableType\": {{fii}},\r\n  \"dividends\": {{$randomPrice}},\r\n  \"sector\": {{tijolo}}\r\n}",
+					"raw": "{\r\n  \"sender\": \"{{$randomCompanyName}}\",\r\n  \"name\": \"{{fiiName}}\",\r\n  \"minimumInvestment\": {{$randomPrice}},\r\n  \"investmentVariableType\": 1,\r\n  \"dividends\": {{$randomPrice}},\r\n  \"sector\": {{tijolo}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -456,6 +456,11 @@
 							"    pm.response.to.be.withBody;\r",
 							"    pm.response.to.be.json;\r",
 							"    pm.response.to.have.jsonBody(\"investments\");\r",
+							"\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.investments).to.be.an('array');\r",
+							"\r",
+							"    pm.environment.set(\"ID\", jsonData.investments[0].id);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -468,7 +473,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWwiOiJqb2FvLnNpbHZhQGV4YW1wbGUuY29tIiwibmJmIjoxNzAzMjYyNDU1LCJleHAiOjE3MDMzMjI0NTUsImlhdCI6MTcwMzI2MjQ1NX0.Vp9SxxILUiYu9ZqZJCTGn67wsu0peUxdJm4pklwCLhw",
+							"value": "{{TOKEN}}",
 							"type": "string"
 						}
 					]
@@ -491,6 +496,203 @@
 					],
 					"path": [
 						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByIdVariableIncome Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate request with successfull\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/variableIncome/{{ID}}",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"variableIncome",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateVariableIncome",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate request with successfull\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.have.jsonBody(\"id\");\r",
+							"    pm.response.to.have.jsonBody(\"sector\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Investments\r",
+							"var acao = 0;\r",
+							"pm.environment.set('acao', acao);\r",
+							"\r",
+							"var fii = 1;\r",
+							"pm.environment.set('fii', fii);\r",
+							"\r",
+							"// Sectors\r",
+							"var tijolo = 0;\r",
+							"pm.environment.set('tijolo', tijolo);\r",
+							"\r",
+							"var papel = 1;\r",
+							"pm.environment.set('papel', papel);\r",
+							"\r",
+							"var hibrido = 2;\r",
+							"pm.environment.set('hibrido', hibrido);\r",
+							"\r",
+							"var classNumber = _.random(1, 9);\r",
+							"\r",
+							"var acaoName = `{{$randomCompanySuffix}}${classNumber}`;\r",
+							"pm.environment.set('acaoName', acaoName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sender\": \"{{$randomCompanyName}}\",\r\n  \"name\": \"{{acaoName}}\",\r\n  \"minimumInvestment\": {{$randomPrice}},\r\n  \"investmentVariableType\": {{acao}},\r\n  \"dividends\": {{$randomPrice}},\r\n  \"sector\": {{hibrido}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBASE}}/variableIncome/{{ID}}",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"variableIncome",
+						"{{ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteVariableIncome Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete with successfull\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.noBody;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Investments\r",
+							"var acao = 0;\r",
+							"pm.environment.set('acao', acao);\r",
+							"\r",
+							"var fii = 1;\r",
+							"pm.environment.set('fii', fii);\r",
+							"\r",
+							"// Sectors\r",
+							"var tijolo = 0;\r",
+							"pm.environment.set('tijolo', tijolo);\r",
+							"\r",
+							"var papel = 1;\r",
+							"pm.environment.set('papel', papel);\r",
+							"\r",
+							"var hibrido = 2;\r",
+							"pm.environment.set('hibrido', hibrido);\r",
+							"\r",
+							"var classNumber = _.random(1, 9);\r",
+							"\r",
+							"var acaoName = `{{$randomCompanySuffix}}${classNumber}`;\r",
+							"pm.environment.set('acaoName', acaoName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{TOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URLBASE}}/variableIncome/{{ID}}",
+					"host": [
+						"{{URLBASE}}"
+					],
+					"path": [
+						"variableIncome",
+						"{{ID}}"
 					]
 				}
 			},

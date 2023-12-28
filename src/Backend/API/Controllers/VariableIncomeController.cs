@@ -1,6 +1,7 @@
 ﻿using Api.Filters;
 using Application.UseCases.Update;
 using Application.UseCases.VariableIncome.Create;
+using Application.UseCases.VariableIncome.Delete;
 using Application.UseCases.VariableIncome.GetById;
 using Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -36,5 +37,15 @@ public class VariableIncomeController : TechChallengeController
         var response = await useCase.Execute(id, request);
 
         return Ok(response);
+    }
+
+
+    [HttpDelete("{id:hashids}")]
+    public async Task<IActionResult> Delete([FromServices] IDeleteVariableIncomeUseCase useCase,
+        [FromRoute][ModelBinder(typeof(HashidsModelBinder))] long id)
+    {
+        await useCase.Execute(id);
+
+        return Ok();
     }
 }

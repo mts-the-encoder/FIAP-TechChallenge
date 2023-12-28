@@ -18,6 +18,12 @@ public class VariableIncomeRepository : IVariableIncomeWriteOnlyRepository, IVar
         await _context.VariableIncomes.AddAsync(income);
     }
 
+    public async Task Delete(long id)
+    {
+        var investment = await _context.VariableIncomes.FirstOrDefaultAsync(x => x.Id == id);
+        _context.VariableIncomes.Remove(investment);
+    }
+
     public async Task<IList<VariableIncome>> GetAllFromUser(long id)
     {
         return await _context.VariableIncomes.Where(x => x.UserId == id).AsNoTracking().ToListAsync();

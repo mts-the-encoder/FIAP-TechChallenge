@@ -41,7 +41,7 @@ public class UpdateVariableIncomeUseCase : IUpdateVariableIncomeUseCase
         return _mapper.Map<VariableIncomeResponse>(investment);
     }
 
-    private static void Validate(Domain.Entities.User user, Domain.Entities.VariableIncome investment)
+    private void Validate(Domain.Entities.User user, Domain.Entities.VariableIncome investment)
     {
         var request = _mapper.Map<VariableIncomeRequest>(investment);
         var validator = new VariableIncomeValidator();

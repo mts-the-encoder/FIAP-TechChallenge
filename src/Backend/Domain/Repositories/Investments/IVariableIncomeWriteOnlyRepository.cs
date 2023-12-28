@@ -5,4 +5,5 @@ namespace Domain.Repositories.Investments;
 public interface IVariableIncomeWriteOnlyRepository
 {
     Task Create(VariableIncome income);
+    Task Delete(long id);
 }
