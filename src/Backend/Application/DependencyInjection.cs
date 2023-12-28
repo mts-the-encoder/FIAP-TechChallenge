@@ -2,6 +2,10 @@
 using Application.Services.Token;
 using Application.Services.UserSigned;
 using Application.UseCases.DashboardVariable;
+using Application.UseCases.FixedIncome.Delete;
+using Application.UseCases.FixedIncome.GetAll;
+using Application.UseCases.FixedIncome.GetById;
+using Application.UseCases.FixedIncome.Update;
 using Application.UseCases.Login.DoLogin;
 using Application.UseCases.Update;
 using Application.UseCases.User.Create;
@@ -63,6 +67,10 @@ public static class DependencyInjection
             .AddScoped<IDashboardVariableUseCase, DashboardVariableUseCase>()
             .AddScoped<IGetByIdUseCase, GetByIdUseCase>()
             .AddScoped<IUpdateVariableIncomeUseCase, UpdateVariableIncomeUseCase>()
-            .AddScoped<IDeleteVariableIncomeUseCase, DeleteVariableIncomeUseCase>();
+            .AddScoped<IDeleteVariableIncomeUseCase, DeleteVariableIncomeUseCase>()
+            .AddScoped<IUpdateFixedIncomeUseCase, UpdateFixedIncomeUseCase>()
+            .AddScoped<IDeleteFixedIncomeUseCase, DeleteFixedIncomeUseCase>()
+            .AddScoped<IGetAllFixedIncomeUseCase, GetAllFixedIncomeUseCase>()
+            .AddScoped<IGetByIdFixedIncomeUseCase, GetByIdFixedIncomeUseCase>();
     }
 }
