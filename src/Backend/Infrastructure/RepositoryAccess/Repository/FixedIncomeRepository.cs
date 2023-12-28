@@ -36,17 +36,17 @@ public class FixedIncomeRepository : IFixedIncomeWriteOnlyRepository, IFixedInco
 
     public async Task<IList<FixedIncome>> GetAll(long id)
     {
-        return await _context.FixedIncomes.AsNoTracking().ToListAsync();
+        return await _context.FixedIncomes.Where(x => x.UserId == id).AsNoTracking().ToListAsync();
     }
 
     public async Task<IList<FixedIncome>> GetAllCDB(long id)
     {
-        return await _context.FixedIncomes.AsNoTracking().Where(x => x.InvestmentFixedType == InvestmentFixedType.CDB).ToListAsync();
+        return await _context.FixedIncomes.AsNoTracking().Where(x => x.InvestmentFixedType == InvestmentFixedType.CDB && x.UserId == id).ToListAsync();
     }
 
     public async Task<IList<FixedIncome>> GetTesouroDireto(long id)
     {
-        return await _context.FixedIncomes.AsNoTracking().Where(x => x.InvestmentFixedType == InvestmentFixedType.TesouroDireto).ToListAsync();
+        return await _context.FixedIncomes.AsNoTracking().Where(x => x.InvestmentFixedType == InvestmentFixedType.TesouroDireto && x.UserId == id).ToListAsync();
     }
 
     public async Task<FixedIncome> GetById(long id)

@@ -1,7 +1,9 @@
 ﻿using Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
+[Table("FixedIncome")]
 public class FixedIncome : EntityBase
 {
     public string Sender { get; set; }

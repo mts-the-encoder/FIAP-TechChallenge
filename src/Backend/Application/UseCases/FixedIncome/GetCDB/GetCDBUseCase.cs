@@ -5,14 +5,14 @@ using Domain.Repositories.Investments;
 using Exceptions;
 using Exceptions.ExceptionBase;
 
-namespace Application.UseCases.FixedIncome.GetAll;
+namespace Application.UseCases.FixedIncome.GetCDB;
 
-public class GetAllFixedIncomeUseCase : IGetAllFixedIncomeUseCase
+public class GetCDBUseCase : IGetCDBUseCase
 {
     private readonly IFixedIncomeReadOnlyRepository _repository;
     private readonly IUserSigned _userSigned;
     private readonly IMapper _mapper;
-    public GetAllFixedIncomeUseCase(IFixedIncomeReadOnlyRepository repository, IUserSigned userSigned, IMapper mapper)
+    public GetCDBUseCase(IFixedIncomeReadOnlyRepository repository,IUserSigned userSigned,IMapper mapper)
     {
         _repository = repository;
         _userSigned = userSigned;
@@ -23,7 +23,7 @@ public class GetAllFixedIncomeUseCase : IGetAllFixedIncomeUseCase
     {
         var userSigned = await _userSigned.GetUser();
 
-        var investments = await _repository.GetAll(userSigned.Id);
+        var investments = await _repository.GetAllCDB(userSigned.Id);
 
         Validate(userSigned, investments);
 

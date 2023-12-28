@@ -2,9 +2,12 @@
 using Application.Services.Token;
 using Application.Services.UserSigned;
 using Application.UseCases.DashboardVariable;
+using Application.UseCases.FixedIncome.Create;
 using Application.UseCases.FixedIncome.Delete;
 using Application.UseCases.FixedIncome.GetAll;
 using Application.UseCases.FixedIncome.GetById;
+using Application.UseCases.FixedIncome.GetCDB;
+using Application.UseCases.FixedIncome.GetTesouroDireto;
 using Application.UseCases.FixedIncome.Update;
 using Application.UseCases.Login.DoLogin;
 using Application.UseCases.Update;
@@ -71,6 +74,9 @@ public static class DependencyInjection
             .AddScoped<IUpdateFixedIncomeUseCase, UpdateFixedIncomeUseCase>()
             .AddScoped<IDeleteFixedIncomeUseCase, DeleteFixedIncomeUseCase>()
             .AddScoped<IGetAllFixedIncomeUseCase, GetAllFixedIncomeUseCase>()
-            .AddScoped<IGetByIdFixedIncomeUseCase, GetByIdFixedIncomeUseCase>();
+            .AddScoped<IGetByIdFixedIncomeUseCase, GetByIdFixedIncomeUseCase>()
+            .AddScoped<ICreateFixedIncomeUseCase, CreateFixedIncomeUseCase>()
+            .AddScoped<IGetTesouroDiretoUseCase, GetTesouroDiretoUseCase>()
+            .AddScoped<IGetCDBUseCase, GetCDBUseCase>();
     }
 }

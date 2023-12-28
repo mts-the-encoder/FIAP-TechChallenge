@@ -49,9 +49,11 @@ public class AutoMapperConfiguration : Profile
         CreateMap<VariableIncomeRequest, VariableIncome>()
             .ForMember(dest => dest.InvestmentVariableType, cfg => cfg
                 .MapFrom(x => x.InvestmentVariableType)).ReverseMap();
+
         CreateMap<FixedIncomeRequest, FixedIncome>()
             .ForMember(dest => dest.InvestmentFixedType,cfg => cfg
                 .MapFrom(x => x.InvestmentFixedType)).ReverseMap();
+
         CreateMap<VariableDashboardRequest, VariableIncome>().ReverseMap();
     }
 }
