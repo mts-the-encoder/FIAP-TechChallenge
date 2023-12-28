@@ -51,7 +51,9 @@ public static class DependencyInjection
             .AddScoped<IVariableIncomeWriteOnlyRepository, VariableIncomeRepository>()
             .AddScoped<IVariableIncomeReadOnlyRepository, VariableIncomeRepository>()
             .AddScoped<IVariableIncomeUpdateOnlyRepository, VariableIncomeRepository>()
-            .AddScoped<IFixedIncomeWriteOnlyRepository, FixedIncomeRepository>();
+            .AddScoped<IFixedIncomeWriteOnlyRepository, FixedIncomeRepository>()
+            .AddScoped<IFixedIncomeReadOnlyRepository, FixedIncomeRepository>()
+            .AddScoped<IFixedIncomeUpdateOnlyRepository, FixedIncomeRepository>();
     }
 
     private static void AddFluentMigrator(this IServiceCollection services, IConfiguration configuration)
@@ -64,6 +66,5 @@ public static class DependencyInjection
             .WithGlobalConnectionString(configuration.GetFullConnection()).ScanIn(Assembly.Load("Infrastructure"))
             .For.All());
         }
-
     }
 }
