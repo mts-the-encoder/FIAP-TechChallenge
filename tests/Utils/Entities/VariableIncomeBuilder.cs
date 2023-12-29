@@ -9,12 +9,12 @@ public class VariableIncomeBuilder
     public static VariableIncome Build()
     {
         var vIncomeCreated = new Faker<VariableIncome>()
-            .RuleFor(x => x.Id, f => f.Random.Int())
-            .RuleFor(x => x.UserId, f => f.Random.Int())
+            .RuleFor(x => x.Id,_ => 1)
+            .RuleFor(x => x.UserId,_ => 1)
             .RuleFor(x => x.Sender, f => f.Company.CompanyName())
             .RuleFor(x => x.Name, f => f.Company.CompanySuffix())
-            .RuleFor(x => x.Dividends, f => f.Random.Double())
-            .RuleFor(x => x.MinimumInvestment, f => f.Random.Double())
+            .RuleFor(x => x.Dividends, _ => 0.50)
+            .RuleFor(x => x.MinimumInvestment,_ => 10.0)
             .RuleFor(x => x.InvestmentVariableType, f => f.PickRandom<InvestmentVariableType>())
             .RuleFor(x => x.Sector, f => f.PickRandom<Sector>());
 

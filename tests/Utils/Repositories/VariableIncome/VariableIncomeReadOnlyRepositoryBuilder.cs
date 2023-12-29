@@ -23,4 +23,11 @@ public class VariableIncomeReadOnlyRepositoryBuilder
     {
         return _repository.Object;
     }
+
+    public VariableIncomeReadOnlyRepositoryBuilder GetById(Domain.Entities.VariableIncome investment)
+    {
+        _repository.Setup(r => r.GetById(investment.Id)).ReturnsAsync(investment);
+
+        return this;
+    }
 }

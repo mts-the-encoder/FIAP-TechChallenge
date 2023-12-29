@@ -13,7 +13,8 @@ public class FixedIncomeRequestBuilder
             .RuleFor(x => x.Profitability,f => f.Company.CompanySuffix())
             .RuleFor(x => x.MinimumInvestment,f => f.Random.Double(50,1000))
             .RuleFor(x => x.InvestmentFixedType,f => f.PickRandom<InvestmentFixedType>())
-            .RuleFor(x => x.IR,f => f.Random.Int());
+            .RuleFor(x => x.IR,f => f.Random.Int(10, 20))
+            .RuleFor(x => x.MaturityDate, DateTime.Now.AddYears(5));
 
         return fIncomeCreated;
     }

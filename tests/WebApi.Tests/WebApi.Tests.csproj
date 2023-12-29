@@ -34,4 +34,8 @@
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="V1\VariableIncome\GetById\" />
+  </ItemGroup>
+
 </Project>

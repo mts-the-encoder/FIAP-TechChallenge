@@ -19,6 +19,13 @@ public class VariableIncomeUpdateOnlyRepositoryBuilder
         return _instance;
     }
 
+    public VariableIncomeUpdateOnlyRepositoryBuilder GetById(Domain.Entities.VariableIncome investment)
+    {
+        _repository.Setup(r => r.GetInvestmentById(investment.Id)).ReturnsAsync(investment);
+
+        return this;
+    }
+
     public IVariableIncomeUpdateOnlyRepository Build()
     {
         return _repository.Object;

@@ -1,19 +1,19 @@
-﻿using Exceptions;
-using FluentAssertions;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using Exceptions;
+using FluentAssertions;
 using Utils.Requests;
 using Xunit;
 
-namespace WebApi.Tests.V1.VariableIncome.Create;
+namespace WebApi.Tests.V1.FixedIncome.Create;
 
-public class CreateVariableIncomeTest : ControllerBase
+public class CreateFixedIncomeTest : ControllerBase
 {
-    private const string METHOD = "variableincome";
+    private const string METHOD = "fixedincome";
     private Domain.Entities.User _user;
     private readonly string _password;
 
-    public CreateVariableIncomeTest(WebAppFactory<Program> factory) : base(factory)
+    public CreateFixedIncomeTest(WebAppFactory<Program> factory) : base(factory)
     {
         _user = factory.GetUser();
         _password = factory.GetPassword();
@@ -24,7 +24,7 @@ public class CreateVariableIncomeTest : ControllerBase
     {
         var token = await Login(_user.Email, _password);
 
-        var request = VariableIncomeRequestBuilder.Build();
+        var request = FixedIncomeRequestBuilder.Build();
 
         var response = await PostRequest(METHOD, request, token);
 
@@ -42,7 +42,7 @@ public class CreateVariableIncomeTest : ControllerBase
     {
         var token = await Login(_user.Email, _password);
 
-        var request = VariableIncomeRequestBuilder.Build();
+        var request = FixedIncomeRequestBuilder.Build();
         request.Sender = string.Empty;
 
         var response = await PostRequest(METHOD, request, token);
