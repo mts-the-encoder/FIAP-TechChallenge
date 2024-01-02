@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
 COPY src ./
-WORKDIR /app/Backend/Backend\API
+WORKDIR /app/Backend/Backend/API
 
 RUN dotnet restore
 
