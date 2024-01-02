@@ -12,14 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Executando scripts appsettings
-        run: |
-              sed -i "s,#CONEXAO_BANCO_DADOS_PRODUCAO#,${{ secrets.DB_CONNECTION }},g" \src\Backend\API\appsettings.Production.json
-              sed -i "s,#JWT_CHAVE_TOKEN#,${{ secrets.JWT_TOKEN_PROD }},g" \src\Backend\API\appsettings.Production.json
-              sed -i "s,#SENHA_CHAVE_ADICIONAL#,${{ secrets.ADDITIONAL_KEY_PWD }},g" \src\Backend\API\appsettings.Production.json
-              sed -i "s,#HASH_IDS_SALT#,${{ secrets.HASH_IDS_SALT }},g" \src\Backend\API\appsettings.Production.json
-
+    
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
